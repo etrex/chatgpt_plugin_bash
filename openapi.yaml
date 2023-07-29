@@ -1,0 +1,27 @@
+openapi: 3.0.0
+info:
+  title: My Bash Plugin API
+  version: 1.0.0
+paths:
+  /execute:
+    post:
+      operationId: executeCommand
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                command:
+                  type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  output:
+                    type: string
