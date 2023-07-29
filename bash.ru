@@ -7,7 +7,11 @@ class BashPlugin
 
     if req.path_info == '/execute' && req.post?
       command = JSON.parse(req.body.read)['command']
+      puts " --- "
+      puts "收到了 bash 指令：#{command}"
       output = `#{command}`
+      puts "執行的結果為：#{output}"
+      puts " --- "
       [200, { 'Content-Type' => 'application/json' }, [{ output: output }.to_json]]
     elsif req.path_info == '/.well-known/ai-plugin.json' && req.get?
       manifest = File.read('ai-plugin.json')
